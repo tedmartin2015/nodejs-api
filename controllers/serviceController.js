@@ -3,6 +3,20 @@ const { MongoClient, ObjectID } = require('mongodb');
 
 function serviceController (config) {
 
+    //Note for ADD: insertService and deleteService (POST)
+
+    function insertService(req, res) {
+        (async function mongo() {
+
+        } ());
+    }
+
+    function deleteService(req, res) {
+        (async function mongo() {
+
+        } ());
+    }
+
     function getAllServices(req, res) {
         (async function mongo() {
             let client;
@@ -43,7 +57,9 @@ function serviceController (config) {
 
     return {
         getAllServices,
-        getServiceById
+        getServiceById,
+        insertService,
+        deleteService
     };
 }
 
