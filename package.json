@@ -21,7 +21,9 @@
     ],
     "delay": 2500,
     "env": {
-      "PORT": 5003
+      "PORT": 5003,
+      "MONGO_SERVER": "mongodb://localhost:27017",
+      "MONGO_DATABASE": "serviceApp"
     }
   }
 }
