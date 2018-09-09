@@ -3,10 +3,13 @@ const serviceRouter = express.Router();
 const serviceController = require('../controllers/serviceController');
 
 function router(config) {
-    const { getAll } = serviceController(config);
+    const { getAllServices, getServiceById } = serviceController(config);
 
-    serviceRouter.route('/getAll')
-        .get(getAll);
+    serviceRouter.route('/')
+        .get(getAllServices);
+
+    serviceRouter.route('/:id')
+        .get(getServiceById);
 
     return serviceRouter;
 }

@@ -4,7 +4,8 @@
   "description": "sample api to connect to local mongodb",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=app,app:* nodemon app.js"
   },
   "author": "Ted Martin Hermosisima",
   "license": "ISC",
