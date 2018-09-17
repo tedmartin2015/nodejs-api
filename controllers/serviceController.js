@@ -7,7 +7,25 @@ function serviceController (config) {
 
     function insertService(req, res) {
         (async function mongo() {
+            const data = {
+                servicesid: req.params.servicesid,
+                name: req.params.name,
+                provider: req.params.provider,
+                bookId: req.params.bookid
+            };
+            
+            let client;
+            try {
+                client = await MongoClient.connect(config.mongoServer, { useNewUrlParser: true });
+                const db = client.db(config.mongoDatabase);
+                const col = await db.collection('services');
+                await col.insert(data);
 
+                client.close();
+            }
+            catch(err) {
+                console.log(err.stack);
+            }
         } ());
     }
 
