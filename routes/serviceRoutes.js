@@ -3,7 +3,7 @@ const serviceRouter = express.Router();
 const serviceController = require('../controllers/serviceController');
 
 function router(config) {
-    const { getAllServices, getServiceById, insertService } = serviceController(config);
+    const { getAllServices, getServiceById, insertService, deleteService } = serviceController(config);
 
     serviceRouter.route('/')
         .get(getAllServices);
@@ -11,8 +11,11 @@ function router(config) {
     serviceRouter.route('/:id')
         .get(getServiceById);
 
-    serviceRouter.route('/:name/:provider/:servicesid/:bookid')
-        .post(insertService)
+    serviceRouter.route('/insert/:name/:provider/:servicesid/:bookid')
+        .post(insertService);
+
+    serviceRouter.route('/delete/:id')
+        .post(deleteService);
 
     return serviceRouter;
 }

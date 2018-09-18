@@ -19,18 +19,34 @@ function serviceController (config) {
                 client = await MongoClient.connect(config.mongoServer, { useNewUrlParser: true });
                 const db = client.db(config.mongoDatabase);
                 const col = await db.collection('services');
-                await col.insert(data);
+                const response = await col.insertOne(data);
 
                 client.close();
+                res.json(response);
             }
             catch(err) {
                 console.log(err.stack);
             }
         } ());
     }
-
+ 
     function deleteService(req, res) {
         (async function mongo() {
+            const data = { _id: ObjectID(req.params.id) };
+
+            //res.json(data);
+            let client;
+            try { 
+                client = await MongoClient.connect(config.mongoServer, { useNewUrlParser: true });
+                const db = client.db(config.mongoDatabase);
+                const col = await db.collection('services');
+                await col.deleteMany(data);
+                client.close();
+                res.json(data);
+            }
+            catch(err) {
+                console.log(err.stack);
+            }
 
         } ());
     }
